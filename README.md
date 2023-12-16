@@ -1,5 +1,7 @@
 #### ivarpivar Funds - Angular Application
 
+#### ivarpivar Funds - Angular Application
+
 ### Overview
 
 This project is an Angular application designed to fetch and display fund data from an API. The application showcases fund details in a user-friendly interface with interactive elements like dropdowns for detailed information.
@@ -9,10 +11,11 @@ This project is an Angular application designed to fetch and display fund data f
 - On clicking a fund's title, detailed information about the fund is shown, including type, rate, performance changes, and other financial data and documents.
 - The fund details section is expandable and collapses on click, providing a clean and interactive user experience.
 
-  ### Setup and installation
-  To run this project, install it locally using npm:
+### Setup and Installation
+To run this project, install it locally using npm:
+
   ```
-  $ git clon ***this repository***
+  $ git clon [repository URL]
   $ cd ../test
   $ npm install
   $ ng serve
