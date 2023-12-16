@@ -11,10 +11,12 @@ This project is an Angular application designed to fetch and display fund data f
 
   ### Setup and installation
   To run this project, install it locally using npm:
+  ```
   $ git clon ***this repository***
   $ cd ../test
-$ npm install
-$ ng serve
+  $ npm install
+  $ ng serve
+  ```
 
 open http://loclahost:4200 to access the page.
 
