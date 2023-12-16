@@ -1,4 +1,12 @@
-<div className="title">
-  <p>funds works!</p>
-    </div>
-
+<!-- funds.component.html -->
+<div *ngIf="funds">
+  <h2>Funds List</h2>
+  <ul>
+    <li *ngFor="let fund of funds">
+      <h3>{{ fund.fundName }}</h3>
+      <p>Type: {{ fund.fundType }}</p>
+      <p>ISIN: {{ fund.isin }}</p>
+      <!-- Display other properties as needed -->
+    </li>
+  </ul>
+</div>

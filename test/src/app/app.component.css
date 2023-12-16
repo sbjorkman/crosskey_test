@@ -1,6 +1,14 @@
-.body {
-  background-color: aquamarine;
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
-.homepage {
-  background-color: aquamarine;
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
 }

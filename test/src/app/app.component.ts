@@ -1,25 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import {HttpClient} from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from './api.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  standalone: true
 })
-export class AppComponent implements OnInit{
-  funds: Object | undefined;
-  title: string | undefined;
+export class AppComponent implements OnInit {
+  funds = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    return this.http.get('https://ivarpivar.netlify.app/api').subscribe((response) => {
-      this.funds = response;
-      console.log(this.funds);
+    this.apiService.getFunds().subscribe(funds => {
+      this.funds = funds;
     });
   }
 }

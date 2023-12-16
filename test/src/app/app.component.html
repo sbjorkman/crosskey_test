@@ -1,6 +1,18 @@
-<div className="homepage">
-
-<p>works</p>
-
-</div>
-
+<table>
+  <thead>
+  <tr>
+    <th>Fund Name</th>
+    <th>1M Change</th>
+    <th>3M Change</th>
+    <th>3Y Change</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let fund of funds">
+    <td>{{ fund.name }}</td>
+    <td>{{ fund.change1m }}</td>
+    <td>{{ fund.change3m }}</td>
+    <td>{{ fund.change3y }}</td>
+  </tr>
+  </tbody>
+</table>

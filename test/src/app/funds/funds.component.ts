@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {FundsService} from "../funds.service";
+// funds.component.ts
+import { Component, OnInit } from '@angular/core';
+import { FundsService } from '../funds.service';
 
 @Component({
   selector: 'app-funds',
@@ -8,19 +9,13 @@ import {FundsService} from "../funds.service";
 })
 export class FundsComponent implements OnInit {
   funds: any;
-  isLoading: boolean | undefined;
 
-  constructor(private fundsService: FundsService) {}
+  constructor(private fundsService: FundsService) { }
 
   ngOnInit() {
-    this.isLoading = true;
-    this.fundsService.getFunds().subscribe((response) => {
-      this.funds = response;
-      console.log(this.funds);
-      this.isLoading = false;
-    }, (error) => {
-      this.isLoading = false;
-      console.log('Error:', error);
+    this.fundsService.getFunds().subscribe((data: any) => {
+      this.funds = data;
+      console.log(this.funds); // This should log the data you mentioned
     });
   }
 }
