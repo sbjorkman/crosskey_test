@@ -1,7 +1,5 @@
 #### ivarpivar Funds - Angular Application
 
-#### ivarpivar Funds - Angular Application
-
 ### Overview
 
 This project is an Angular application designed to fetch and display fund data from an API. The application showcases fund details in a user-friendly interface with interactive elements like dropdowns for detailed information.
