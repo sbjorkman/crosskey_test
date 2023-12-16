@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {Fund} from "./fund.model";
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,19 +15,22 @@ import {Fund} from "./fund.model";
     CommonModule
   ],
 })
+// app.component.ts
 export class AppComponent implements OnInit {
-  funds: Fund[] = [];
-  title: string | undefined;
+  fundDetails: any; // Holds the details of a single fund
+  funds: Fund[] = []; // Holds the list of funds
+  instrumentIds: string[] = ['9884', '9882', '9810']; // Add more IDs as needed
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.getFunds().subscribe(response => {
-      console.log('API Response:', response);
-      // If the funds array is nested, adjust the following line accordingly
-      this.funds = response; // or response.data or another path based on the actual structure
-
-      console.log('2. ', this.funds)
+    this.instrumentIds.forEach(id => {
+      this.apiService.getFundById(id).subscribe(fund => {
+        if (fund) {
+          this.funds.push(fund);
+        }
+      });
     });
   }
 }
+
