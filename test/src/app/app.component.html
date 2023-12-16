@@ -1,13 +1,27 @@
 <!-- src/app/app.component.html -->
 <div *ngIf="funds.length; else noData">
   <div *ngFor="let fund of funds">
-    <h2>{{ fund.fundName }} ({{ fund.isin }})</h2>
-    <p><strong>Type:</strong> {{ fund.fundType }}</p>
-    <p><strong>Rate:</strong> {{ fund.rate }}</p>
-    <p><strong>1 Month Change:</strong> {{ fund.change1m }}</p>
-    <p><strong>3 Months Change:</strong> {{ fund.change3m }}</p>
-    <p><strong>3 Years Change:</strong> {{ fund.change3y }}</p>
-    <!-- Display other fund details as needed -->
+    <h2 (click)="toggleFundDetails(fund.instrumentId)">
+      {{ fund.fundName }} ({{ fund.isin }})
+    </h2>
+
+    <div *ngIf="openedFundId === fund.instrumentId">
+      <p><strong>Type:</strong> {{ fund.fundType }}</p>
+      <p><strong>Rate:</strong> {{ fund.rate }}</p>
+      <p><strong>1 Month Change:</strong> {{ fund.change1m }}</p>
+      <p><strong>3 Months Change:</strong> {{ fund.change3m }}</p>
+      <p><strong>3 Years Change:</strong> {{ fund.change3y }}</p>
+
+      <!-- Display links from documents array -->
+      <div *ngIf="fund.documents && fund.documents.length">
+        <h3>Documents</h3>
+        <ul>
+          <li *ngFor="let doc of fund.documents">
+            <a href="{{ doc.url }}" target="_blank">{{ doc.title }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 <ng-template #noData><p>No funds available.</p></ng-template>

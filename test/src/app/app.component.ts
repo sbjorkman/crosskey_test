@@ -20,17 +20,21 @@ export class AppComponent implements OnInit {
   fundDetails: any; // Holds the details of a single fund
   funds: Fund[] = []; // Holds the list of funds
   instrumentIds: string[] = ['9884', '9882', '9810']; // Add more IDs as needed
+  openedFundId: null | string | undefined;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.instrumentIds.forEach(id => {
-      this.apiService.getFundById(id).subscribe(fund => {
-        if (fund) {
-          this.funds.push(fund);
-        }
-      });
+    this.apiService.getAllFunds().subscribe(funds => {
+      if (funds) {
+        this.funds = funds;
+      }
     });
+  }
+
+
+  toggleFundDetails(fundId: string) {
+    this.openedFundId = this.openedFundId === fundId ? null : fundId;
   }
 }
 
