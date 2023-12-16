@@ -1,18 +1,40 @@
-<table>
-  <thead>
-  <tr>
-    <th>Fund Name</th>
-    <th>1M Change</th>
-    <th>3M Change</th>
-    <th>3Y Change</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let fund of funds">
-    <td>{{ fund.name }}</td>
-    <td>{{ fund.change1m }}</td>
-    <td>{{ fund.change3m }}</td>
-    <td>{{ fund.change3y }}</td>
-  </tr>
-  </tbody>
-</table>
+<!-- app.component.html -->
+<div *ngIf="funds && funds.length; else noData">
+  <ul>
+    <li *ngFor="let fund of funds">
+      {{ fund.fundName }} ({{ fund.isin }}
+
+
+    </li>
+  </ul>
+</div>
+<ng-template #noData><p>No funds available.</p></ng-template>
+
+
+<!-- app.component.html -->
+<div *ngIf="funds && funds.length; else noData">
+  <div *ngFor="let fund of funds">
+    <h2>{{ fund.fundName }} ({{ fund.isin }})</h2>
+    <p><strong>Type:</strong> {{ fund.fundType }}</p>
+    <p><strong>Estimation Date:</strong> {{ fund.estimationDate | date }}</p>
+    <p><strong>Rate:</strong> {{ fund.rate }}</p>
+    <p><strong>1 Year Change:</strong> {{ fund.change1y }}</p>
+    <p><strong>Available for Monthly Saving:</strong> {{ fund.availableForMonthlySaving }}</p>
+
+    <!-- Add more details as needed -->
+
+      <!-- Add other permissions as needed -->
+
+
+    <p><strong>Documents:</strong></p>
+    <ul>
+      <li *ngFor="let doc of fund.documents">
+        <a href="{{ doc.url }}" target="_blank">{{ doc.title }}</a>
+      </li>
+    </ul>
+
+    <!-- Add other fund properties as needed -->
+
+  </div>
+</div>
+<ng-template #noData><p>No funds available.</p></ng-template>
