@@ -1,17 +1,50 @@
 <!-- src/app/app.component.html -->
+<body>
+<h1 class="fundName">ivarpivar funds</h1>
+<br />
+
 <div *ngIf="funds.length; else noData">
   <div *ngFor="let fund of funds">
-    <h2 (click)="toggleFundDetails(fund.instrumentId)">
-      {{ fund.fundName }} ({{ fund.isin }})
+    <div class="fundName">
+    <h2 (click)="toggleFundDetails(fund.instrumentId)" class="info">
+      {{ fund.fundName }}
     </h2>
+    </div>
 
-    <div *ngIf="openedFundId === fund.instrumentId">
-      <p><strong>Type:</strong> {{ fund.fundType }}</p>
-      <p><strong>Rate:</strong> {{ fund.rate }}</p>
-      <p><strong>1 Month Change:</strong> {{ fund.change1m }}</p>
-      <p><strong>3 Months Change:</strong> {{ fund.change3m }}</p>
-      <p><strong>3 Years Change:</strong> {{ fund.change3y }}</p>
+    <div *ngIf="openedFundId === fund.instrumentId" class="fundDetails">
+      <table>
+        <tbody>
+        <tr>
+        <td><strong>1 Year Change:</strong> {{ fund.change1y }} {{ fund.currency }}</td>
+        <td><strong>Year High:</strong> {{ fund.yearHigh }} {{ fund.currency }}</td>
+        <td><strong>Year Low:</strong> {{ fund.yearLow }} {{ fund.currency }}</td>
 
+        </tr>
+        <br />
+        <br />
+        <tr>
+          <td><strong>Type:</strong></td>
+          <td>{{ fund.fundType }}</td>
+        </tr>
+        <tr>
+          <td><strong>Rate:</strong></td>
+          <td>{{ fund.rate }} {{ fund.currency }}</td>
+        </tr>
+        <tr>
+          <td><strong>1 Month Change:</strong></td>
+          <td>{{ fund.change1m }} {{ fund.currency }}</td>
+        </tr>
+        <tr>
+          <td><strong>3 Months Change:</strong></td>
+          <td>{{ fund.change3m }} {{ fund.currency }}</td>
+        </tr>
+        <tr>
+          <td><strong>3 Years Change:</strong></td>
+          <td>{{ fund.change3y }} {{ fund.currency }}</td>
+        </tr>
+        <!-- Add other rows as needed -->
+        </tbody>
+      </table>
       <!-- Display links from documents array -->
       <div *ngIf="fund.documents && fund.documents.length">
         <h3>Documents</h3>
@@ -24,4 +57,7 @@
     </div>
   </div>
 </div>
-<ng-template #noData><p>No funds available.</p></ng-template>
+
+    <ng-template #noData><p>No funds available.</p></ng-template>
+</body>
+
