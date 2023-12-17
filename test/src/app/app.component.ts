@@ -29,8 +29,7 @@ export class AppComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
-
-  //get all funds from api
+  
   ngOnInit() {
     this.apiService.getAllFunds().subscribe(funds => {
       this.funds = funds;

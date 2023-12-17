@@ -128,18 +128,10 @@ a:hover {
   h1 {
     font-size: 2em;
   }
-  .chart-container {
-    width: 100%;
-    height: auto;
-  }
 }
 
 @media (max-width: 400px) {
   h1 {
     font-size: 1.5em;
-  }
-  .chart-container {
-    width: 90%;
-    height: 100%;
   }
 }
