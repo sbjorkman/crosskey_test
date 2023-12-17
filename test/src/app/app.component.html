@@ -9,6 +9,14 @@
     <button (click)="filterByFundType('Kort räntefond')">Kort räntefond</button>
     <button (click)="filterByFundType('Blandfond')">Blandfond</button>
 </div>
+<div *ngIf="showChart" class="chart-container" style="display: block">
+<canvas baseChart
+          [datasets]="barChartData"
+          [labels]="['1 Month Change', '3 Months Change', '3 Years Change']">
+  </canvas>
+  </div>
+<br />
+
 
 <div *ngIf="funds.length; else noData">
   <div *ngFor="let fund of filteredFunds">
@@ -35,19 +43,19 @@
         </tr>
         <tr>
           <td><strong>Rate:</strong></td>
-          <td>{{ fund.rate }} {{ fund.currency }}</td>
+          <td>{{ fund.rate }} %</td>
         </tr>
         <tr>
           <td><strong>1 Month Change:</strong></td>
-          <td>{{ fund.change1m }} {{ fund.currency }}</td>
+          <td>{{ fund.change1m }} %</td>
         </tr>
         <tr>
           <td><strong>3 Months Change:</strong></td>
-          <td>{{ fund.change3m }} {{ fund.currency }}</td>
+          <td>{{ fund.change3m }} %</td>
         </tr>
         <tr>
           <td><strong>3 Years Change:</strong></td>
-          <td>{{ fund.change3y }} {{ fund.currency }}</td>
+          <td>{{ fund.change3y }} %</td>
         </tr>
         <tr>
             <td><strong>Start Date:</strong></td>

@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {Fund} from "./fund.model";
+import {NgChartsModule} from "ng2-charts";
 
 
 @Component({
@@ -12,17 +13,23 @@ import {Fund} from "./fund.model";
   standalone: true,
   imports: [
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    NgChartsModule
   ],
 })
-// app.component.ts
+
 export class AppComponent implements OnInit {
   funds: Fund[] = [];
   filteredFunds: Fund[] = [];
   openedFundId: null | string | undefined;
+  public barChartData: any;
+  public selectedFundType: string = '';
+  public showChart: boolean = false;
 
   constructor(private apiService: ApiService) { }
 
+
+  //get all funds from api
   ngOnInit() {
     this.apiService.getAllFunds().subscribe(funds => {
       this.funds = funds;
@@ -31,11 +38,25 @@ export class AppComponent implements OnInit {
   }
 
   filterByFundType(fundType: string) {
+    this.selectedFundType = fundType;
     this.filteredFunds = fundType === '' ? this.funds : this.funds.filter(fund => fund.fundType === fundType);
+    this.prepareChartData(this.filteredFunds);
   }
 
   toggleFundDetails(fundId: string) {
     this.openedFundId = this.openedFundId === fundId ? null : fundId;
   }
-}
 
+
+  private prepareChartData(funds: Fund[]) {
+    const chartData = funds
+        .filter(fund => fund.change1m !== null && fund.change3m !== null && fund.change3y !== null)
+        .map(fund => ({
+          label: fund.fundName,
+          data: [fund.change1m, fund.change3m, fund.change3y]
+        }));
+
+    this.showChart = chartData.length > 0;
+    this.barChartData = chartData;
+  }
+}
