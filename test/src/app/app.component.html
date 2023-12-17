@@ -1,9 +1,8 @@
-<!-- src/app/app.component.html -->
 <body>
 <h1 class="fundName">ivarpivar funds</h1>
 <br />
 <div class="filter-buttons">
-    <button (click)="filterByFundType('')">All</button> <!-- Button to reset the filter -->
+    <button (click)="filterByFundType('')">All</button>
     <button (click)="filterByFundType('Aktiefond')">Aktiefond</button>
     <button (click)="filterByFundType('Räntefond')">Räntefond</button>
     <button (click)="filterByFundType('Medellång räntefond')">Medellång räntefond</button>
@@ -50,7 +49,10 @@
           <td><strong>3 Years Change:</strong></td>
           <td>{{ fund.change3y }} {{ fund.currency }}</td>
         </tr>
-        <!-- Add other rows as needed -->
+        <tr>
+            <td><strong>Start Date:</strong></td>
+            <td>{{ fund.startDate | date: 'longDate' }}</td>
+        </tr>
         </tbody>
       </table>
       <!-- Display links from documents array -->
