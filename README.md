@@ -16,7 +16,8 @@ To run this project, install it locally using npm:
 
   ```
   $ git clon [repository URL]
-  $ cd ../test
+  $ open the cloned repository in your IDE of choise
+  $ cd test
   $ npm install
   $ ng serve
   ```
