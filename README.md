@@ -1,4 +1,4 @@
-#### ivarpivar Funds - Angular Application
+## ivarpivar Funds - Angular Application
 
 ### Overview
 
