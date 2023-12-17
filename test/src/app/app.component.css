@@ -31,12 +31,31 @@ h3 {
   width: 95%;
   padding: 10px;
 }
-.fundName {
-background-color: #0e582e;
-color: white;
+.filter-buttons button {
   margin: 10px;
-    padding: 10px;
-    border-radius: 10px;
+  padding: 8px 10px;
+  background-color: #0e582e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-buttons button:hover {
+  background-color: #0a3c1e;
+}
+
+
+.fundName {
+  background-color: #0e582e;
+  color: white;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 .fundDetails table {
   width: 100%;

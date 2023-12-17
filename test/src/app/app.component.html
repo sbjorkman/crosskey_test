@@ -2,9 +2,17 @@
 <body>
 <h1 class="fundName">ivarpivar funds</h1>
 <br />
+<div class="filter-buttons">
+    <button (click)="filterByFundType('')">All</button> <!-- Button to reset the filter -->
+    <button (click)="filterByFundType('Aktiefond')">Aktiefond</button>
+    <button (click)="filterByFundType('Räntefond')">Räntefond</button>
+    <button (click)="filterByFundType('Medellång räntefond')">Medellång räntefond</button>
+    <button (click)="filterByFundType('Kort räntefond')">Kort räntefond</button>
+    <button (click)="filterByFundType('Blandfond')">Blandfond</button>
+</div>
 
 <div *ngIf="funds.length; else noData">
-  <div *ngFor="let fund of funds">
+  <div *ngFor="let fund of filteredFunds">
     <div class="fundName">
     <h2 (click)="toggleFundDetails(fund.instrumentId)" class="info">
       {{ fund.fundName }}

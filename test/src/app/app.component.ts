@@ -17,21 +17,22 @@ import {Fund} from "./fund.model";
 })
 // app.component.ts
 export class AppComponent implements OnInit {
-  fundDetails: any; // Holds the details of a single fund
-  funds: Fund[] = []; // Holds the list of funds
-  instrumentIds: string[] = ['9884', '9882', '9810']; // Add more IDs as needed
+  funds: Fund[] = [];
+  filteredFunds: Fund[] = [];
   openedFundId: null | string | undefined;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.apiService.getAllFunds().subscribe(funds => {
-      if (funds) {
-        this.funds = funds;
-      }
+      this.funds = funds;
+      this.filteredFunds = funds;
     });
   }
 
+  filterByFundType(fundType: string) {
+    this.filteredFunds = fundType === '' ? this.funds : this.funds.filter(fund => fund.fundType === fundType);
+  }
 
   toggleFundDetails(fundId: string) {
     this.openedFundId = this.openedFundId === fundId ? null : fundId;
