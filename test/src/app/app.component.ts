@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   public barChartData: any;
   public selectedFundType: string = '';
   public showChart: boolean = false;
+  public isAllFundsSelected: boolean = true;
 
   constructor(private apiService: ApiService) { }
 
@@ -34,13 +35,17 @@ export class AppComponent implements OnInit {
     this.apiService.getAllFunds().subscribe(funds => {
       this.funds = funds;
       this.filteredFunds = funds;
+      this.isAllFundsSelected = true;
     });
   }
 
   filterByFundType(fundType: string) {
     this.selectedFundType = fundType;
     this.filteredFunds = fundType === '' ? this.funds : this.funds.filter(fund => fund.fundType === fundType);
-    this.prepareChartData(this.filteredFunds);
+    this.isAllFundsSelected = fundType === '';
+    if (!this.isAllFundsSelected) {
+      this.prepareChartData(this.filteredFunds);
+    }
   }
 
   toggleFundDetails(fundId: string) {

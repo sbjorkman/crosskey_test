@@ -9,7 +9,7 @@
     <button (click)="filterByFundType('Kort räntefond')">Kort räntefond</button>
     <button (click)="filterByFundType('Blandfond')">Blandfond</button>
 </div>
-<div *ngIf="showChart" class="chart-container" style="display: block">
+<div *ngIf="!isAllFundsSelected && showChart" style="display: block">
 <canvas baseChart
           [datasets]="barChartData"
           [labels]="['1 Month Change', '3 Months Change', '3 Years Change']">
